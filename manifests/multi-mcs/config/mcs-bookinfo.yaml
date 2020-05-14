@@ -1,8 +1,27 @@
+apiVersion: cloud.google.com/v1beta1
+kind: BackendConfig
+metadata:
+  name: multi-gateway-bookinfo-cfg
+  namespace: istio-system
+spec:
+  healthCheck:
+    checkIntervalSec: 15
+    timeoutSec: 10
+    healthyThreshold: 1
+    unhealthyThreshold: 2
+    type: HTTP
+    port: 80
+    requestPath: /
+    hostHeader: "www.bookinfo.com"
+---
 apiVersion: networking.gke.io/v1
 kind: MultiClusterService
 metadata:
   name: multi-gateway-bookinfo
   namespace: istio-system
+  annotations:
+    beta.cloud.google.com/backend-config:
+      '{"ports": {"80":"multi-gateway-bookinfo-cfg"}}'
 spec:
   template:
     spec:

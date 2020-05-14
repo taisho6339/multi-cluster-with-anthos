@@ -4,7 +4,7 @@ metadata:
   name: bookinfo
 spec:
   hosts:
-    - "*"
+    - "www.bookinfo.com"
   gateways:
     - multi-gateway
   http:
@@ -23,7 +23,7 @@ spec:
             prefix: /api/v1/products
       fault:
           abort:
-            httpStatus: 502
+            httpStatus: 503
             percentage:
               value: 100.0
       route:
