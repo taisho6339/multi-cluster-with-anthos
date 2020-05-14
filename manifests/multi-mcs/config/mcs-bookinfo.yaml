@@ -1,0 +1,15 @@
+apiVersion: networking.gke.io/v1
+kind: MultiClusterService
+metadata:
+  name: multi-gateway-bookinfo
+  namespace: istio-system
+spec:
+  template:
+    spec:
+      selector:
+        app: istio-ingressgateway
+      ports:
+        - name: multi-gateway-bookinfo
+          protocol: TCP
+          port: 80
+          targetPort: 80

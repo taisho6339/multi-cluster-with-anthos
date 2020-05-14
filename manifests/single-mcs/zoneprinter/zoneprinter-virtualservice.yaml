@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: zoneprinter
+spec:
+  hosts:
+#    - "*"
+    - "www.zoneprinter.com"
+  gateways:
+    - single-gateway
+  http:
+    - match:
+        - uri:
+            exact: /
+        - uri:
+            exact: /ping
+        - uri:
+            exact: /location
+      route:
+        - destination:
+            host: zoneprinter
+            port:
+              number: 80

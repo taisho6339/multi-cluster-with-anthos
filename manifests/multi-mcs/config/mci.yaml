@@ -1,0 +1,26 @@
+apiVersion: networking.gke.io/v1
+kind: MultiClusterIngress
+metadata:
+  name: multi-gateway
+  namespace: istio-system
+spec:
+  template:
+    spec:
+      rules:
+        - host: "www.bookinfo.com"
+          http:
+            paths:
+              - path: /
+                backend:
+                  serviceName: multi-gateway-bookinfo
+                  servicePort: 80
+        - host: "www.zoneprinter.com"
+          http:
+            paths:
+              - path: /
+                backend:
+                  serviceName: multi-gateway-zoneprinter
+                  servicePort: 80
+      backend:
+        serviceName: multi-gateway-zoneprinter
+        servicePort: 80

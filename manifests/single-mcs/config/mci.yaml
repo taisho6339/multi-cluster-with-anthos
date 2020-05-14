@@ -1,0 +1,11 @@
+apiVersion: networking.gke.io/v1
+kind: MultiClusterIngress
+metadata:
+  name: single-gateway
+  namespace: istio-system
+spec:
+  template:
+    spec:
+      backend:
+        serviceName: single-gateway
+        servicePort: 80
