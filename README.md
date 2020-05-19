@@ -1,4 +1,4 @@
-# k8s Multi Cluster With Anthos
+# Kubernets Multi regional cluster Sample with Anthos
 This repository is sample to create multi regional cluster with GCP Anthos.
 
 ## Overview
